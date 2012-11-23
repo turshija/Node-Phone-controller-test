@@ -68,6 +68,7 @@ io.sockets.on('connection', function (socket) {
 
             console.log('Disconnected',id);
         }
+        socket.leave( socket.browserId );
     });
 
     socket.on('ping', function(time) {
