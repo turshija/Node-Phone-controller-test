@@ -38,7 +38,6 @@ io.sockets.on('connection', function (socket) {
 
         browserPlayers.push( id );
 
-        console.log(browserPlayers);
         socket.emit('sendBrowserId', id);
     });
 
