@@ -29,8 +29,8 @@ function in_array(needle, haystack) {
 io.sockets.on('connection', function (socket) {
 
     socket.on('initBrowser', function() {
-        // var id = generateRandomString( 5 );
-        var id ="12345";
+        var id = generateRandomString( 5 );
+        // var id ="12345";
 
         socket.browserId = id;
         socket.isPhone = false;
