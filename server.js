@@ -21,25 +21,54 @@ function generateRandomString(len, charSet) {
     return output;
 }
 
+function in_array(needle, haystack) {
+    if ( haystack.indexOf( needle ) != -1) return true;
+    else return false;
+}
+
 io.sockets.on('connection', function (socket) {
 
     socket.on('initBrowser', function() {
-        var id = generateRandomString( 5 );
+        // var id = generateRandomString( 5 );
+        var id ="12345";
 
         socket.browserId = id;
+        socket.isPhone = false;
+        socket.join( id );
+
         browserPlayers.push( id );
 
         console.log(browserPlayers);
         socket.emit('sendBrowserId', id);
     });
 
-    socket.on('disconnect', function() {
-        var id = socket.browserId,
-            index = browserPlayers.indexOf( id );
-        // remove ID from browserPlayers
-        browserPlayers.splice(index, 1);
+    socket.on('initPhone', function(browserId) {
+        socket.isPhone = true;
+        if (in_array(browserId, browserPlayers)) {
+            socket.browserId = browserId;
+            socket.join( browserId );
+            console.log('Start animation');
+            socket.emit('startAnimation','jej?');
+        } else {
+            console.log('Invalid browser id');
+            socket.emit('sendError','Invalid browser id !');
+        }
+    });
 
-        console.log('Disconnected',id);
+    socket.on('receiveGyro', function(alpha, beta, gamma) {
+        // console.log( alpha, beta, gamma);
+        io.sockets.in( socket.browserId ).emit('sendGyro', alpha, beta, gamma);
+    });
+
+    socket.on('disconnect', function() {
+        if ( !socket.isPhone ) {
+            var id = socket.browserId,
+                index = browserPlayers.indexOf( id );
+            // remove ID from browserPlayers
+            browserPlayers.splice(index, 1);
+
+            console.log('Disconnected',id);
+        }
     });
 
     socket.on('ping', function(time) {
