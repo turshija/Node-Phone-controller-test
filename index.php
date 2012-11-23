@@ -1,3 +1,7 @@
+<?php
+$url = dirname($_SERVER['PHP_SELF']);
+// echo $url;
+?>
 <html>
 <head>
     <title>Test</title>
@@ -13,7 +17,7 @@
 <body>
     <h1>Node test :)</h1>
 
-    <span id="browserId"></span>
+    Open this on phone: <?php echo $url ?>/phone.php?id=<span id="browserId"></span>
 
     <div id="debug"></div>
 
