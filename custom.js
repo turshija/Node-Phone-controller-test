@@ -1,11 +1,16 @@
-window.onload = function() {
+$(document).ready(function() {
+    var browserId = $("#browserId").text();
+
     socket = io.connect('http://127.0.0.1:8080');
 
+    // Computer browser stuff
     socket.on('connect', function(){
-        socket.emit('test');
+        socket.emit('initBrowser');
     });
 
-    socket.on('test2', function(param1) {
-        console.log(param1);
+    socket.on('sendBrowserId', function(selfBrowserId) {
+        console.log(selfBrowserId);
+        $("#phoneId").text(selfBrowserId);
     });
-}
+
+});
