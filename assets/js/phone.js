@@ -2,9 +2,10 @@
 var x = 0, y = 0, z = 0, socket, counter = 0;
 
 $(document).ready(function() {
-    var browserId = $("#browserId").text();
+    var browserId = $("#browserId").text(),
+        servername = $("body").data('servername');
 
-    socket = io.connect('http://192.168.1.4:8080');
+    socket = io.connect('http://'+servername+':8080');
 
     socket.on('connect', function() {
         socket.emit('initPhone', browserId);

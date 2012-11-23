@@ -1,7 +1,8 @@
 $(document).ready(function() {
-    var $moveMe = $("#moveMe");
+    var $moveMe = $("#moveMe"),
+        servername = $("body").data('servername');
 
-    socket = io.connect('http://192.168.1.4:8080');
+    socket = io.connect('http://'+servername+':8080');
 
     socket.on('connect', function() {
         socket.emit('initBrowser');
