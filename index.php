@@ -33,8 +33,9 @@ $qrUrl = 'http://chart.apis.google.com/chart?cht=qr&chs=150x150&chld=H|0&chl='.$
     <div id="loadingDiv">Loading...</div>
 
     <div id="content">
-        Open this on phone: <?php echo $url ?><span id="browserId"></span>
-
+        Open this on phone: <?php echo $url ?><span id="browserId"></span><br />
+        Or scan this QR code<br />
+        Test this with phone in landscape mode please :)
         <div id="debug"></div>
 
         <img src="" id="qrCode" data-imgsrc="<?php echo $qrUrl ?>" />
