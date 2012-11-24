@@ -5,7 +5,12 @@ $(document).ready(function() {
     var browserId = $("#browserId").text(),
         servername = $("body").data('servername');
 
-    socket = io.connect('http://'+servername+':8080');
+    try {
+        socket = io.connect('http://'+servername+':8080');
+    } catch (e) {
+        alert('Our server is down at the moment :(');
+        return false;
+    }
 
     socket.on('connect', function() {
         socket.emit('initPhone', browserId);
