@@ -1,6 +1,3 @@
-<?php
-$url = dirname($_SERVER['PHP_SELF']);
-?>
 <!DOCTYPE html>
 <html>
 <head>

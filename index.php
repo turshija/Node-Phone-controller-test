@@ -1,5 +1,5 @@
 <?php
-$url = dirname($_SERVER['PHP_SELF']);
+$url = 'http://' . $_SERVER['SERVER_NAME'] . dirname($_SERVER['PHP_SELF']);
 ?>
 <html>
 <head>
